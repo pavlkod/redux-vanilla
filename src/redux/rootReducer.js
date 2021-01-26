@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { DECREMENT, INCREMENT, TOGGLE_THEME } from "./actions";
+import { ACTIVE_BTNS, DECREMENT, INACTIVE_BTNS, INCREMENT, TOGGLE_THEME } from "./actions";
 
 const counterReducer = (state = 0, action) => {
   switch (action.type) {
@@ -14,12 +14,17 @@ const counterReducer = (state = 0, action) => {
 
 const initialState = {
   value: "light",
+  disabled: false,
 };
 
 const themeReducer = (state = initialState, action) => {
   switch (action.type) {
     case TOGGLE_THEME:
       return { ...state, value: action.payload };
+    case ACTIVE_BTNS:
+      return { ...state, disabled: false };
+    case INACTIVE_BTNS:
+      return { ...state, disabled: true };
     default:
       return state;
   }

@@ -31,11 +31,11 @@ $theme.addEventListener("click", () => {
 
 store.subscribe(() => {
   const state = store.getState();
-  console.log(state);
   $counter.textContent = state.counter;
 
+  document.querySelectorAll(".btn").forEach(node => (node.disabled = state.theme.disabled));
+
   document.body.className = state.theme.value;
-  // state.theme document.querySelector('body').classList.toggle('dark')
 });
 
 store.dispatch({ type: "__INIT__" });
