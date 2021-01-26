@@ -6,6 +6,7 @@ import { applyMiddleware, createStore } from "redux";
 
 import "./styles.css";
 import thunk from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const $add = document.getElementById("add");
 const $sub = document.getElementById("sub");
@@ -13,7 +14,7 @@ const $async = document.getElementById("async");
 const $theme = document.getElementById("theme");
 const $counter = document.getElementById("counter");
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 $add.addEventListener("click", () => {
   store.dispatch(increment());
